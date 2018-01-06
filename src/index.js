@@ -9,6 +9,9 @@ import AuthRoute from "./components/authroute";
 import Login from './pages/login'
 import Register from './pages/register'
 
+import BossInfo from './pages/bossInfo'
+import GeniusInfo from './pages/geniusInfo'
+
 import './main.css'
 
 // 配置axios拦截器
@@ -19,22 +22,14 @@ import {
   Route,
 } from 'react-router-dom'
 
-const Boss = function () {
-  return <div>boss</div>
-}
-
-const Genius = function () {
-  return <div>Genius</div>
-}
-
 ReactDOM.render(
   (
     <Provider store={ store }>
       <BrowserRouter>
         <div>
           <AuthRoute />
-          <Route path='/boss' component={ Boss }></Route>
-          <Route path='/genius' component={Genius }></Route>
+          <Route path='/bossinfo' component={ BossInfo }></Route>
+          <Route path='/geniusinfo' component={ GeniusInfo }></Route>
           <Route path='/login' component={ Login }></Route>
           <Route path='/register' component={ Register }></Route>
         </div>

@@ -8,7 +8,7 @@ import { loadData } from '../../store/user.redux';
 @withRouter
 @connect(
   null,
-  loadData
+  { loadData }
 )
 class AuthRoute extends Component {
   componentDidMount() {
@@ -17,8 +17,6 @@ class AuthRoute extends Component {
     if (publicList.indexOf(pathname) > -1) {
       return null
     }
-    console.log('auth');
-    
     // 获取用户信息
     axios.get('/user/info')
       .then(res => {
