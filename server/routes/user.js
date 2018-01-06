@@ -86,11 +86,20 @@ Router.post('/update', function (req, res) {
   }
   const body = req.body
   User.findByIdAndUpdate(userid, body, function (err, doc) {
+    console.log('DOC', doc, body)
     const data = Object.assign({}, {
       user: doc.user,
       type: doc.type
     }, body)
     return res.json({ code: 1, data })
+  })
+})
+
+Router.get('/list', function (req, res) {
+  const { type } = req.query
+  // User.remove({},function(e,d){})
+  User.find({ type }, function (err, doc) {
+    return res.json({ code: 1, data: doc })
   })
 })
 

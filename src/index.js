@@ -12,6 +12,8 @@ import Register from './pages/register'
 import BossInfo from './pages/bossInfo'
 import GeniusInfo from './pages/geniusInfo'
 
+import DashBoard from './components/dashboard'
+
 import './main.css'
 
 // 配置axios拦截器
@@ -20,6 +22,7 @@ import './utils/axios.config'
 import {
   BrowserRouter,
   Route,
+  Switch
 } from 'react-router-dom'
 
 ReactDOM.render(
@@ -28,10 +31,13 @@ ReactDOM.render(
       <BrowserRouter>
         <div>
           <AuthRoute />
-          <Route path='/bossinfo' component={ BossInfo }></Route>
-          <Route path='/geniusinfo' component={ GeniusInfo }></Route>
-          <Route path='/login' component={ Login }></Route>
-          <Route path='/register' component={ Register }></Route>
+          <Switch>
+            <Route path='/bossinfo' component={BossInfo}></Route>
+            <Route path='/geniusinfo' component={GeniusInfo}></Route>
+            <Route path='/login' component={Login}></Route>
+            <Route path='/register' component={Register}></Route>
+            <Route component={DashBoard}></Route>
+          </Switch>
         </div>
       </BrowserRouter>
   </Provider>),

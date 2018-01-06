@@ -20,6 +20,9 @@ const models = {
     'avatar': {
       type: String
     },
+    'desc': {
+      type: String
+    },
     'title': {
       type: String
     },
