@@ -5,6 +5,7 @@ const model = require('../model.js')
 
 const Router = express.Router()
 const User = model.getModel('user')
+const Chat = model.getModel('chat')
 
 const _filter = { 'pwd': 0, '__v': 0 }
 
@@ -101,6 +102,42 @@ Router.get('/list', function (req, res) {
   User.find({ type }, function (err, doc) {
     return res.json({ code: 1, data: doc })
   })
+})
+
+Router.get('/getmsglist', function(req, res){
+  const userid = req.cookies.userid
+
+  User.find({}, function (err, userdoc) {
+    let users = {}
+    userdoc.forEach(val => {
+      users[val._id] = { name: val.user, avatar: val.avatar }
+    })
+    Chat.find({'$or': [{from: userid}, {to: userid}]}, function (err, doc) {
+      if (!err) {
+        res.json({
+          code: 1,
+          msgs: doc,
+          users: users
+        })
+      }
+    })
+  })
+})
+
+Router.post('/readmsg', function (req, res) {
+  const userid = req.cookies.userid
+  const { from } = req.body
+  Chat.update(
+    { from, to: userid },
+    { '$set': { read: true } },
+    { 'multi': true },
+    function (err, doc) {
+      console.log(doc)
+      if (!err) {
+        return res.json({ code: 1, num: doc.nModified })
+      }
+      return res.json({ code: 0, msg: '修改失败' })
+    })
 })
 
 function md5Pwd(pwd) {
