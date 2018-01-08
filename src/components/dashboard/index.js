@@ -7,10 +7,8 @@ import NavLinkBar from '../navLinkBar'
 import Genius from '../genius'
 import Boss from '../boss'
 import About from '../about'
+import Msg from '../msg'
 
-function Chat() {
-  return <h2>消息列表页面</h2>
-}
 @connect(
   state => state
 )
@@ -36,11 +34,11 @@ class DashBoard extends Component {
         hide: user.type === 'boss'
       },
       {
-        path: '/chat',
+        path: '/msg',
         text: '消息',
         icon: 'msg',
         title: '消息列表',
-        component: Chat
+        component: Msg
       },
       {
         path: '/about',
