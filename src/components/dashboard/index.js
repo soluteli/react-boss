@@ -6,16 +6,11 @@ import NavLinkBar from '../navLinkBar'
 
 import Genius from '../genius'
 import Boss from '../boss'
+import About from '../about'
 
 function Chat() {
   return <h2>消息列表页面</h2>
 }
-function About() {
-  return <h2>个人中心页面</h2>
-}
-
-
-
 @connect(
   state => state
 )
@@ -55,7 +50,6 @@ class DashBoard extends Component {
         component: About
       }
     ]
-
 
     return (
       <div>
